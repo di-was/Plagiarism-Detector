@@ -1,2 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿namespace PlagiarismDetector
+{
+    public class Program
+    {
+        public static void main(String[] args)
+        {
+
+        }
+    }
+}
