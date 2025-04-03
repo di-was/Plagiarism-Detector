@@ -2,20 +2,30 @@ namespace Algorithms
 {
     public class Algorithm
     {
-        public virtual String Name { get; set; }
-        public virtual String Description { get; set; }
-        public Algorithm() {
-            Name = "New Algorithm";
-            Description = "No Description";
-        }
+        protected static String name;
+        protected static String description;
+        public virtual String Content { get; set; }
+        public virtual String Pattern { get; set; }
+
+
+        public virtual void PreProcess(String content=""){Console.WriteLine("No preprocessing Required");}
+        public Algorithm() {}
     }
 
     public class NaiveAlgorithm : Algorithm
     {
-        public NaiveAlgorithm()
+        static NaiveAlgorithm()
         {
-            Name = "Naive Algorithm";
-            Description = "Time Complexity : O(m*n). Suitable for small text";
+            name = "Naive Algorithm";
+            description = "Time Complexity is O(m*n).Suitable for small text";
+        }
+        public NaiveAlgorithm(String content, String pattern){
+            this.Content = content;
+            this.Pattern = pattern;
+        }
+        public override string ToString()
+        {
+            return name + ": " + base.ToString() + "\n" + "Description: " + description;
         }
     }
 }
