@@ -2,18 +2,36 @@ namespace Algorithms
 {
     public class Algorithm
     {
-        protected static String name;
-        protected static String description;
-        public virtual String Content { get; set; }
-        public virtual String Pattern { get; set; }
+        public static String? name;
+        public static String? description;
+        public virtual String Content { get; set; } = "";
+        public virtual String Pattern { get; set; } = "";
 
 
         public virtual void PreProcess(String content=""){Console.WriteLine("No preprocessing Required");}
         public Algorithm() {}
     }
 
-    public class NaiveAlgorithm : Algorithm
+    sealed class NaiveAlgorithm : Algorithm
     {
+        // Returns starting indexes of all substrings that match the pattern
+       public int[] Detect()
+        {
+            List<int> detectedIndexes = new List<int>();
+            for (int i=0; i<Content.Length - Pattern.Length; i++)
+            { 
+                int j;
+                for (j=0; j<Pattern.Length; j++)
+                {
+                    if (Content[i+j] != Pattern[j]) { break; }
+                }
+                if (j==Pattern.Length)
+                {
+                    detectedIndexes.Add(i);
+                }
+            }
+            return detectedIndexes.ToArray();
+        }
         static NaiveAlgorithm()
         {
             name = "Naive Algorithm";
