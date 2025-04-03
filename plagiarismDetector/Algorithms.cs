@@ -15,7 +15,7 @@ namespace Algorithms
         public NaiveAlgorithm()
         {
             Name = "Naive Algorithm";
-            Description = "Time Complexity : O(m*n)";
+            Description = "Time Complexity : O(m*n). Suitable for small text";
         }
     }
 }
