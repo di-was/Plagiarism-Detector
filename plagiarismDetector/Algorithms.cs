@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace Algorithms
 {
     public class Algorithm
@@ -9,6 +11,10 @@ namespace Algorithms
 
 
         public virtual void PreProcess(String content=""){Console.WriteLine("No preprocessing Required");}
+        public override string ToString()
+        {
+            return name + ": " + base.ToString() + "\n" + "Description: " + description;
+        }
         public Algorithm() {}
     }
 
@@ -41,9 +47,14 @@ namespace Algorithms
             this.Content = content;
             this.Pattern = pattern;
         }
-        public override string ToString()
+    }
+
+    sealed class KMP : Algorithm
+    {
+        static KMP()
         {
-            return name + ": " + base.ToString() + "\n" + "Description: " + description;
+            name = "Knuth-Morris-Pratt Algorithm";
+            description = "Time Complexity is O(m+n)";
         }
     }
 }
