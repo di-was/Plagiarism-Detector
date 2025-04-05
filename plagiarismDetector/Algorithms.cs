@@ -10,7 +10,9 @@ namespace Algorithms
         public virtual String Pattern { get; set; } = "";
 
 
-        public virtual void PreProcess(String content=""){Console.WriteLine("No preprocessing Required");}
+        public virtual String PreProcess(){return "No preprocessing Required";}
+        public virtual int[] PreProcess(String content) { return new int[content.Length]; }
+        
         public override string ToString()
         {
             return name + ": " + base.ToString() + "\n" + "Description: " + description;
@@ -51,6 +53,10 @@ namespace Algorithms
 
     sealed class KMP : Algorithm
     {
+        public override int[] PreProcess(String content)
+        {
+            return new int[content.Length];
+        }
         static KMP()
         {
             name = "Knuth-Morris-Pratt Algorithm";
