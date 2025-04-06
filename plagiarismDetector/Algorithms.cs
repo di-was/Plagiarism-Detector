@@ -12,6 +12,7 @@ namespace Algorithms
 
         public virtual String PreProcess(){return "No preprocessing Required";}
         public virtual int[] PreProcess(String content) { return new int[content.Length]; }
+        public virtual int[] Detect() { return new int[0]; }
         
         public override string ToString()
         {
@@ -23,7 +24,7 @@ namespace Algorithms
     sealed class NaiveAlgorithm : Algorithm
     {
         // Returns starting indexes of all substrings that match the pattern
-       public int[] Detect()
+       public override int[] Detect()
         {
             List<int> detectedIndexes = new List<int>();
             for (int i=0; i<Content.Length - Pattern.Length; i++)
@@ -58,16 +59,74 @@ namespace Algorithms
             // Computes the Longest Suffix that is also Prefix table
             int length = pattern.Length;
             int[] LongestPrefixSuffix = new int[length];
-            int i = 0, j = 0;
+            int i = 1, j = 0;
             while (i < length)
             {
-                
+                if (pattern[i] == pattern[j])
+                {
+                    j++;
+                    LongestPrefixSuffix[i] = j;
+                    i++;
+                }
+                else if (j != 0)
+                {
+                    j = LongestPrefixSuffix[j - 1];
+
+                } else
+                {
+                    LongestPrefixSuffix[i] = 0;
+                    i++;
+                }
             }
+            return LongestPrefixSuffix;
+        }
+
+        public override int[] Detect()
+        {
+            int lengthOfContent = Content.Length;
+            int lengthOfPattern = Pattern.Length;
+            int[] lps = PreProcess(Pattern);
+            int i = 0, j = 0;
+            List<int> detectedIndexes = new List<int>();
+            while (i < lengthOfContent)
+            {
+                if (Pattern[j] == Content[i])
+                {
+                    i++;
+                    j++;
+                }
+                
+                if (j == lengthOfPattern)
+                {
+                    detectedIndexes.Add(i-j);
+                    j = lps[j - 1];
+                    
+                } else
+                {
+                    if (i < lengthOfContent && Pattern[j] != Content[i])
+                    {
+                        if (j != 0)
+                        {
+                            j = lps[j - 1];
+                        } else
+                        {
+                            i++;
+                            
+                        }
+                    } 
+                }
+            }
+            return detectedIndexes.ToArray();
         }
         static KMP()
         {
             name = "Knuth-Morris-Pratt Algorithm";
-            description = "Time Complexity is O(m+n)";
+            description = "Time Complexity is O(m+n). ";
         }
+        public KMP(String content, String pattern)
+        {
+            this.Content = content;
+            this.Pattern = pattern;
+        } 
     }
 }
