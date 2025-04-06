@@ -121,7 +121,7 @@ namespace Algorithms
         static KMP()
         {
             name = "Knuth-Morris-Pratt Algorithm";
-            description = "Time Complexity is O(m+n). ";
+            description = "Time Complexity is O(m+n).";
         }
         public KMP(String content, String pattern)
         {
