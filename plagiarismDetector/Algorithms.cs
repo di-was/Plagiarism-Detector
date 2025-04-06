@@ -57,10 +57,10 @@ namespace Algorithms
         public override int[] PreProcess(String pattern)
         {
             // Computes the Longest Suffix that is also Prefix table
-            int length = pattern.Length;
+        
             int[] LongestPrefixSuffix = new int[length];
             int i = 1, j = 0;
-            while (i < length)
+            while (i < Pattern.Length)
             {
                 if (pattern[i] == pattern[j])
                 {
@@ -83,12 +83,10 @@ namespace Algorithms
 
         public override int[] Detect()
         {
-            int lengthOfContent = Content.Length;
-            int lengthOfPattern = Pattern.Length;
             int[] lps = PreProcess(Pattern);
             int i = 0, j = 0;
             List<int> detectedIndexes = new List<int>();
-            while (i < lengthOfContent)
+            while (i < Content.Length)
             {
                 if (Pattern[j] == Content[i])
                 {
@@ -96,14 +94,14 @@ namespace Algorithms
                     j++;
                 }
                 
-                if (j == lengthOfPattern)
+                if (j == Pattern.Length)
                 {
                     detectedIndexes.Add(i-j);
                     j = lps[j - 1];
                     
                 } else
                 {
-                    if (i < lengthOfContent && Pattern[j] != Content[i])
+                    if (i < Content.Length && Pattern[j] != Content[i])
                     {
                         if (j != 0)
                         {
