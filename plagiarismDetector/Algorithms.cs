@@ -54,7 +54,7 @@ namespace Algorithms
 
     sealed class KMP : Algorithm
     {
-        public override int[] PreProcess(String pattern)
+        public override int[] PreProcess()
         {
             // Computes the Longest Suffix that is also Prefix table
         
@@ -62,7 +62,7 @@ namespace Algorithms
             int i = 1, j = 0;
             while (i < Pattern.Length)
             {
-                if (pattern[i] == pattern[j])
+                if (Pattern[i] == Pattern[j])
                 {
                     j++;
                     LongestPrefixSuffix[i] = j;
@@ -83,7 +83,7 @@ namespace Algorithms
 
         public override int[] Detect()
         {
-            int[] lps = PreProcess(Pattern);
+            int[] lps = PreProcess();
             int i = 0, j = 0;
             List<int> detectedIndexes = new List<int>();
             while (i < Content.Length)
