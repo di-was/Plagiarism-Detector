@@ -129,4 +129,19 @@ namespace Algorithms
             this.Pattern = pattern;
         } 
     }
+
+    public class RabinKarp : Algorithm
+    {
+        static  RabinKarp()
+        {
+            name = "Rabin-Karp Algorithm";
+            description = "Best case scenario : O(m+n), worst case scenario : O(mn)";
+        }
+
+        public RabinKarp(String content, String pattern)
+        {
+            this.Content = content;
+            this.Pattern = pattern;
+        }
+    }
 }
