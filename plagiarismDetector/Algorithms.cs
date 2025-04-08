@@ -127,7 +127,6 @@ namespace Algorithms
             this.Pattern = pattern;
         } 
     }
-<<<<<<< HEAD
 
     public class RabinKarp : Algorithm
     {
@@ -144,6 +143,3 @@ namespace Algorithms
         }
     }
 }
-=======
-
->>>>>>> f47a2f8881a1f4b7fb9655c1a4a9ad2a97c0295d
