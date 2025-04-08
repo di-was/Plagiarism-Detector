@@ -10,8 +10,7 @@ namespace Algorithms
         public virtual String Pattern { get; set; } = "";
 
 
-        public virtual String PreProcess(){return "No preprocessing Required";}
-        public virtual int[] PreProcess(String content) { return new int[content.Length]; }
+        public virtual int[] PreProcess() { return new int[1]; }
         public virtual int[] Detect() { return new int[0]; }
         
         public override string ToString()
@@ -58,7 +57,7 @@ namespace Algorithms
         {
             // Computes the Longest Suffix that is also Prefix table
         
-            int[] LongestPrefixSuffix = new int[length];
+            int[] LongestPrefixSuffix = new int[Pattern.Length];
             int i = 1, j = 0;
             while (i < Pattern.Length)
             {
@@ -127,7 +126,6 @@ namespace Algorithms
             this.Pattern = pattern;
         } 
     }
-<<<<<<< HEAD
 
     public class RabinKarp : Algorithm
     {
@@ -144,6 +142,3 @@ namespace Algorithms
         }
     }
 }
-=======
-
->>>>>>> f47a2f8881a1f4b7fb9655c1a4a9ad2a97c0295d
