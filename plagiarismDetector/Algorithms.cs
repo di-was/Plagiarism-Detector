@@ -4,10 +4,10 @@ namespace Algorithms
 {
     public class Algorithm
     {
-        public static String? name;
-        public static String? description;
-        public virtual String Content { get; set; } = "";
-        public virtual String Pattern { get; set; } = "";
+        public static string? name;
+        public static string? description;
+        public virtual string Content { get; set; } = "";
+        public virtual string Pattern { get; set; } = "";
 
 
         public virtual int[] PreProcess() { return new int[1]; }
@@ -45,7 +45,7 @@ namespace Algorithms
             name = "Naive Algorithm";
             description = "Time Complexity is O(m*n).Suitable for small text";
         }
-        public NaiveAlgorithm(String content, String pattern){
+        public NaiveAlgorithm(string content, string pattern){
             this.Content = content;
             this.Pattern = pattern;
         }
@@ -120,7 +120,7 @@ namespace Algorithms
             name = "Knuth-Morris-Pratt Algorithm";
             description = "Time Complexity is O(m+n).";
         }
-        public KMP(String content, String pattern)
+        public KMP(string content, string pattern)
         {
             this.Content = content;
             this.Pattern = pattern;
@@ -135,7 +135,7 @@ namespace Algorithms
             description = "Best case scenario : O(m+n), worst case scenario : O(mn)";
         }
 
-        public RabinKarp(String content, String pattern)
+        public RabinKarp(string content, string pattern)
         {
             this.Content = content;
             this.Pattern = pattern;
