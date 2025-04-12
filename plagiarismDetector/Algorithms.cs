@@ -129,12 +129,32 @@ namespace Algorithms
 
     public class RabinKarp : Algorithm
     {
+        public static int p = 31; // small prime number
+        public static int m = (int)Math.Pow(10, 9) + 9; // large prime number
+
+        private long CalculateHash(string s)
+        {
+            long hashValue=0;
+            int asciiValue;
+            int power = 1;
+
+            for (int i=0; i<s.Length; i++)
+            {
+                asciiValue = s[i] - 'a';
+                hashValue += (hashValue + asciiValue * power) % m;
+                power = (power * p) % m;
+
+            }
+            return hashValue;
+        }
+        
+        
+        
         static  RabinKarp()
         {
             name = "Rabin-Karp Algorithm";
             description = "Best case scenario : O(m+n), worst case scenario if suboptima hash function : O(mn)";
         }
-
         public RabinKarp(string content, string pattern)
         {
             this.Content = content;
