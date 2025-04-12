@@ -132,7 +132,7 @@ namespace Algorithms
         static  RabinKarp()
         {
             name = "Rabin-Karp Algorithm";
-            description = "Best case scenario : O(m+n), worst case scenario : O(mn)";
+            description = "Best case scenario : O(m+n), worst case scenario if suboptima hash function : O(mn)";
         }
 
         public RabinKarp(string content, string pattern)
