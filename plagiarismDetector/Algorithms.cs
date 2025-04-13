@@ -132,9 +132,9 @@ namespace Algorithms
         public static int p = 31; // small prime number
         public static int m = (int)Math.Pow(10, 9) + 9; // large prime number
 
-        private long CalculateHash(string s)
+        public static int CalculateHash(string s)
         {
-            long hashValue=0;
+            int hashValue=0;
             int asciiValue;
             int power = 1;
 
@@ -147,7 +147,30 @@ namespace Algorithms
             }
             return hashValue;
         }
+
+        public override int[] PreProcess()
+        {
+            int[] hashList = new int[Content.Length];
+            for (int i=0; i<=Content.Length - Pattern.Length; i++) {
+                hashList[i] = (int)RabinKarp.CalculateHash(Content.Substring(i,Pattern.Length));
+            }
+            return hashList;
+        }
         
+        public override int[] Detect()
+        {
+            var detectedIndexes = new List<int>();
+            int[] hashList = this.PreProcess();
+            int patternHashValue = RabinKarp.CalculateHash(Pattern);
+            for (int i=0; i<hashList.Length; i++) 
+            {
+                if (hashList[i] == patternHashValue)
+                {
+                    detectedIndexes.Add(i);
+                }
+            }
+            return detectedIndexes.ToArray();
+        }
         
         
         static  RabinKarp()
