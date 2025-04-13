@@ -184,4 +184,19 @@ namespace Algorithms
             this.Pattern = pattern;
         }
     }
+
+    class BoyerMoore : Algorithm
+    {
+        static BoyerMoore()
+        {
+            name = "Boyer-Moore Algorithm";
+            description = "Best case : O(n/m) \n Average case : O(n) \n Worst case : O(n*m)";
+        }
+
+        public BoyerMoore(string content, string pattern)
+        {
+            this.Content = content;
+            this.Pattern = pattern;
+        }
+    }
 }
