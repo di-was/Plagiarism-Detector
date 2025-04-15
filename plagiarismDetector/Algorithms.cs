@@ -17,7 +17,7 @@ namespace Algorithms
         {
             return name + ": " + base.ToString() + "\n" + "Description: " + description;
         }
-        public Algorithm() {}
+      
     }
 
     sealed class NaiveAlgorithm : Algorithm
