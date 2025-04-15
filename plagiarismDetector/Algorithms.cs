@@ -156,13 +156,12 @@ namespace Algorithms
             }
             return hashList;
         }
-        
         public override int[] Detect()
         {
             var detectedIndexes = new List<int>();
             int[] hashList = this.PreProcess();
             int patternHashValue = RabinKarp.CalculateHash(Pattern);
-            for (int i=0; i<hashList.Length; i++) 
+            for (int i = 0; i < hashList.Length; i++)
             {
                 if (hashList[i] == patternHashValue)
                 {
@@ -171,8 +170,7 @@ namespace Algorithms
             }
             return detectedIndexes.ToArray();
         }
-        
-        
+
         static  RabinKarp()
         {
             name = "Rabin-Karp Algorithm";
