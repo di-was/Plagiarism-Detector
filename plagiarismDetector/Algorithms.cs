@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Algorithms
 {
@@ -127,11 +128,33 @@ namespace Algorithms
         } 
     }
 
-    public class RabinKarp : Algorithm
+    sealed class RabinKarp : Algorithm
     {
         public static int p = 31; // small prime number
         public static int m = (int)Math.Pow(10, 9) + 9; // large prime number
+       static RabinKarp()
+        {
+        if (!RabinKarp.IsPrime(m))
+            {
+                throw new ArgumentException("Invalid static parameter");
+            }
+        
+        }
 
+        public static bool IsPrime(int m)
+        {
+            if (m <= 1) { return false;}
+            if (m == 2) { return true; }
+            int upperBound = (int)Math.Sqrt(m);
+            for (int i=2; i<upperBound; i++)
+            {
+                if (m%i == 0)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
         public static int CalculateHash(string s)
         {
             int hashValue=0;
@@ -183,7 +206,7 @@ namespace Algorithms
         }
     }
 
-    class BoyerMoore : Algorithm
+    sealed class BoyerMoore : Algorithm
     {
         static BoyerMoore()
         {
